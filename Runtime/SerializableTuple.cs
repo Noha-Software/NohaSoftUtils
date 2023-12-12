@@ -26,6 +26,10 @@ namespace NohaSoftware.Utilities
 			return $"{Key}: {Value}";
 		}
 
+		public static implicit operator SerializableTuple<T1, T2>(Tuple<T1, T2> tuple)
+		{
+			return new SerializableTuple<T1, T2>(tuple.Item1, tuple.Item2);
+		}
 		public static implicit operator Tuple<T1, T2>(SerializableTuple<T1, T2> serializableTuple)
 		{
 			return new Tuple<T1, T2>(serializableTuple.Key, serializableTuple.Value);
@@ -71,6 +75,15 @@ namespace NohaSoftware.Utilities
 		public static bool ContainsKey<T1, T2>(this IEnumerable<SerializableTuple<T1, T2>> serializableTuples, T1 key) where T1 : IEquatable<T1>
 		{
 			return serializableTuples.GetElement(key) != null;
+		}
+
+		public static IEnumerable<SerializableTuple<T1, T2>> SerializeDictionary<T1, T2>(this Dictionary<T1, T2> dictionary)
+		{
+			return dictionary.Select(pair => new SerializableTuple<T1, T2>(pair.Key, pair.Value));
+		}
+		public static Dictionary<T1, T2> DeserializeDictionary<T1, T2>(this IEnumerable<SerializableTuple<T1, T2>> serializedDictionary)
+		{
+			return serializedDictionary.ToDictionary(t => t.Key, t => t.Value);
 		}
 	}
 }
