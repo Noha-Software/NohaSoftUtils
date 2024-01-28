@@ -31,5 +31,23 @@ namespace NohaSoftware.Utilities
 				buffer[j] = buffer[i];
 			}
 		}
+
+		/// <summary>Get a random element from the IEnumerable</summary>
+		public static T GetRandom<T>(this IEnumerable<T> source)
+		{
+			int x = new Random().Next(source.Count());
+			int i = 0;
+			foreach (T t in source)
+			{
+				if (i == x) return t;
+				else i++;
+			}
+			return default;
+		}
+		/// <summary>Get a random element from the IEnumerable where the predicate is true</summary>
+		public static T GetRandom<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+		{
+			return source.Where(predicate).GetRandom();
+		}
 	}
 }
