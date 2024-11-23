@@ -1,8 +1,8 @@
 {
   "name": "com.noha-software.utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "Noha Software Utils",
-  "description": "A wide range of utility scripts used and developed by Noha Software",
+  "description": "A wide range of utility scripts developed by Noha Software",
   "unity": "2021.3",
   "keywords": [
     "library",
