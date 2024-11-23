@@ -6,8 +6,8 @@ namespace NohaSoftware.Utilities
 	[System.Serializable]
 	public class MinMaxRange
 	{
-		[SerializeField] float min;
-		[SerializeField] float max;
+		public float min;
+		public float max;
 
 		public MinMaxRange(float min, float max)
 		{
